@@ -36,7 +36,7 @@ export const CharactersList = ({ characters }: CardListProps) => {
       <SearchContainer>
         <input
           type="text"
-          placeholder="Pesquisar"
+          placeholder="Pesquise os personagens"
           value={searchValue}
           onChange={handleSearchChange}
         />
