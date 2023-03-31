@@ -21,7 +21,10 @@ export const CharactersList = ({ characters }: CardListProps) => {
   const [searchValue, setSearchValue] = useState("");
 
   const filteredCharacters = characters.filter((item) =>
-    item.name.toLowerCase().includes(searchValue.toLowerCase())
+    Object.values(item).some(
+      (value) => typeof value === "string" &&
+      value.toLowerCase().includes(searchValue.toLowerCase())
+    )
   );
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
