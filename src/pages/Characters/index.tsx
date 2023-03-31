@@ -8,7 +8,7 @@ import { ContentContainer } from "./styles";
 export function Characters() {
   const { characters, fetchCharacters, totalPages } = useCharacters();
   const [page, setPage] = useState(1);
-  console.log(characters);
+
   const handlePages = (updatePage: number) => {
     if (updatePage <= 0) {
       setPage(1);
@@ -17,8 +17,6 @@ export function Characters() {
     setPage(updatePage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  console.log(characters);
 
   useEffect(() => {
     fetchCharacters(page);
