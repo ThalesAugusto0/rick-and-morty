@@ -30,9 +30,9 @@ export const Card = ({
     <Container>
       <Title>{episode}</Title>
       <EpisodeName>{name}</EpisodeName>
-      <EpisodeAirDate>Released in: {air_date}</EpisodeAirDate>
+      <EpisodeAirDate>Lançado em: {air_date}</EpisodeAirDate>
       <EpisodeCreated>
-        Created in: {formatDate(new Date(created))}
+        Criado em: {formatDate(new Date(created))}
       </EpisodeCreated>
     </Container>
   );

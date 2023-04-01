@@ -1,4 +1,10 @@
-## Instalação
+# Rick and Morty
+
+Esse projeto foi desenvolvido em react, para participar de um processo seletivo na empresa [Green Acesso](https://greenacesso.com.br/), e utiliza uma API publica que fornece informações sobre os personagens da série de televisão Rick and Morty.
+Essa aplicação o usuário é apresentado uma lista de personagens que contém informações como nome, espécie, gênero e status. Contém também a lista de todas as temporadas e episódios da série.
+A aplicação conta com um campo de pesquisa eu pode ser feita pelo nome do personage, se está vivo ou não, e até a localização do mesmo. 
+
+# Instalação
 
 Instale o repositório rick-and-morty com ```yarn```
 

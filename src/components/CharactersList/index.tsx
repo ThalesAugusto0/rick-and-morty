@@ -24,19 +24,31 @@ export const CharactersList = ({ characters }: CardListProps) => {
   const [favorites, setFavorites] = useState<number[]>([])
 
   useEffect(() => {
-    const favoritesFromStorage = localStorage.getItem("favorites");
+    const favoritesFromStorage = sessionStorage.getItem("favorites");
     if (favoritesFromStorage) {
       const parsedFavorites = JSON.parse(favoritesFromStorage);
       if (Array.isArray(parsedFavorites)) {
         setFavorites(parsedFavorites);
+      } else {
+        clearFavorites();
       }
+    } else {
+      clearFavorites();
     }
   }, []);
-  
+
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    saveFavoritesToStorage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favorites]);
-  
+
+  const clearFavorites = () => {
+    sessionStorage.setItem("favorites", JSON.stringify([]));
+  };
+
+  const saveFavoritesToStorage = () => {
+    sessionStorage.setItem("favorites", JSON.stringify(favorites));
+  };
 
   const filteredCharacters = characters.filter((item) =>
     Object.values(item).some(
@@ -51,14 +63,15 @@ export const CharactersList = ({ characters }: CardListProps) => {
 
   const handleFavoriteClick = (id: number) => {
     const index = favorites.indexOf(id);
+    let newFavorites = [...favorites];
     if (index === -1) {
-      setFavorites([...favorites, id]);
+      newFavorites.push(id);
     } else {
-      const newFavorites = [...favorites];
       newFavorites.splice(index, 1);
-      setFavorites(newFavorites);
     }
+    setFavorites(newFavorites);
   };
+  
 
   return (
     <Container>
@@ -93,3 +106,4 @@ export const CharactersList = ({ characters }: CardListProps) => {
     </Container>
   );
 };
+
