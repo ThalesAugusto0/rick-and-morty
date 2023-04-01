@@ -4,7 +4,6 @@ import { Header } from "../../components/Header";
 import {
   Container,
   HomeInfoContainer,
-  HomeInfoText,
   HomeInfoTitle,
   CTAButton,
   CTAButtonContainer,
@@ -26,14 +25,12 @@ export function Home() {
       <Header />
         <HomeInfoContainer>
           <HomeInfoTitle>Bem vindo</HomeInfoTitle>
-          <HomeInfoText>
-            Código feito para realizar o teste na empresa Green Acesso
-          </HomeInfoText>
 
           <CTAButtonContainer>
             <CTAButton onClick={handleCharacters}>Personagens</CTAButton>
             <CTAButton onClick={handleEpisodes}>Episódios</CTAButton>
           </CTAButtonContainer>
+          
         </HomeInfoContainer>
     </Container>
   );

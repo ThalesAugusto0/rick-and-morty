@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   ImageContainer,
@@ -35,11 +35,18 @@ export const Card = ({
   gender,
   origin,
   location,
+  favorited,
+  onFavoriteClick,
 }: CharacterData) => {
-  const [favorited, setFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(favorited || false);
+
+  useEffect(() => {
+    setIsFavorited(favorited || false);
+  }, [favorited]);
 
   const handleFavoriteClick = () => {
-    setFavorited(!favorited);
+    setIsFavorited(!isFavorited);
+    onFavoriteClick(id);
   };
 
   return (
@@ -70,7 +77,7 @@ export const Card = ({
       </InfoContainer>
 
       <FavoriteButton onClick={handleFavoriteClick}>
-        <FavoriteIcon favorited={favorited} />
+        <FavoriteIcon favorited={isFavorited} />
       </FavoriteButton>
     </Container>
   );

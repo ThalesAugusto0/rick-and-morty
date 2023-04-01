@@ -96,21 +96,16 @@ export const Origin = styled.p`
 `;
 
 export const FavoriteIcon = styled.div<{ favorited: boolean }>`
-  width: 24px;
-  height: 24px;
-  background-image: url("https://img.icons8.com/ios/50/000000/star--v1.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: 1px solid #d4af37;
-  border-radius: 50%;
-  cursor: pointer;
+width: 24px;
+height: 24px;
+background-image: url("https://img.icons8.com/ios/50/000000/star--v1.png");
+background-repeat: no-repeat;
+background-size: contain;
+cursor: pointer;
 
-  ${({ favorited }) =>
-    favorited &&
-    `
-    background-color: #d4af37;
-    background-image: url("https://img.icons8.com/ios-filled/50/000000/star--v1.png");
-  `}
+${({ favorited }) =>
+favorited &&
+`background-color: #d4af37; background-image: url("https://img.icons8.com/ios-filled/50/000000/star--v1.png");` }
 `;
 
 export const FavoriteButton = styled.div`

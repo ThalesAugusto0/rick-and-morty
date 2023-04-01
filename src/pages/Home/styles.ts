@@ -67,15 +67,6 @@ export const HomeInfoTitle = styled.p`
   color: var(--text);
 `;
 
-export const HomeInfoText = styled.p`
-  font-size: 18px;
-  color: var(--text);
-
-  text-align: center;
-
-  margin: 2rem 0;
-`;
-
 export const CTAButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
