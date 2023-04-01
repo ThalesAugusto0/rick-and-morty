@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "./Card";
 import { Container, Title, TitleContainer, GridContainer, SearchContainer } from "./styles";
 
@@ -11,6 +11,8 @@ interface CharacterData {
   origin: { name: string; url: string };
   location: { name: string; url: string };
   image: string;
+  favorited?: boolean;
+  onFavoriteClick: (id: number) => void;
 }
 
 interface CardListProps {
@@ -19,6 +21,22 @@ interface CardListProps {
 
 export const CharactersList = ({ characters }: CardListProps) => {
   const [searchValue, setSearchValue] = useState("");
+  const [favorites, setFavorites] = useState<number[]>([])
+
+  useEffect(() => {
+    const favoritesFromStorage = localStorage.getItem("favorites");
+    if (favoritesFromStorage) {
+      const parsedFavorites = JSON.parse(favoritesFromStorage);
+      if (Array.isArray(parsedFavorites)) {
+        setFavorites(parsedFavorites);
+      }
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+  
 
   const filteredCharacters = characters.filter((item) =>
     Object.values(item).some(
@@ -29,6 +47,17 @@ export const CharactersList = ({ characters }: CardListProps) => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
+  };
+
+  const handleFavoriteClick = (id: number) => {
+    const index = favorites.indexOf(id);
+    if (index === -1) {
+      setFavorites([...favorites, id]);
+    } else {
+      const newFavorites = [...favorites];
+      newFavorites.splice(index, 1);
+      setFavorites(newFavorites);
+    }
   };
 
   return (
@@ -56,6 +85,8 @@ export const CharactersList = ({ characters }: CardListProps) => {
             gender={item.gender}
             origin={item.origin}
             location={item.location}
+            favorited={favorites.includes(item.id)}
+            onFavoriteClick={handleFavoriteClick}
           />
         ))}
       </GridContainer>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Container,
   ImageContainer,
@@ -8,6 +9,8 @@ import {
   Origin,
   InfoContainer,
   TextContainer,
+  FavoriteButton,
+  FavoriteIcon,
 } from "./styles";
 
 interface CharacterData {
@@ -19,9 +22,12 @@ interface CharacterData {
   origin: { name: string; url: string };
   location: { name: string; url: string };
   image: string;
+  favorited?: boolean;
+  onFavoriteClick: (id: number) => void;
 }
 
 export const Card = ({
+  id,
   name,
   status,
   image,
@@ -30,6 +36,12 @@ export const Card = ({
   origin,
   location,
 }: CharacterData) => {
+  const [favorited, setFavorited] = useState(false);
+
+  const handleFavoriteClick = () => {
+    setFavorited(!favorited);
+  };
+
   return (
     <Container>
       <ImageContainer src={image} />
@@ -56,6 +68,10 @@ export const Card = ({
       <InfoContainer>
         <Origin>{origin.name}</Origin>
       </InfoContainer>
+
+      <FavoriteButton onClick={handleFavoriteClick}>
+        <FavoriteIcon favorited={favorited} />
+      </FavoriteButton>
     </Container>
   );
 };

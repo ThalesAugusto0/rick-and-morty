@@ -10,6 +10,8 @@ export interface CharacterData {
   origin: { name: string; url: string };
   location: { name: string; url: string };
   image: string;
+  favorited?: boolean;
+  onFavoriteClick: (id: number) => void;
 }
 
 export default function useCharacters() {

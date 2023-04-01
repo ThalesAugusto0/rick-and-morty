@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative; /* adicionamos position relative para que a posição do botão seja relativa a este elemento */
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -92,4 +93,31 @@ export const Origin = styled.p`
   font-size: 14px;
   font-weight: normal;
   color: #000;
+`;
+
+export const FavoriteIcon = styled.div<{ favorited: boolean }>`
+  width: 24px;
+  height: 24px;
+  background-image: url("https://img.icons8.com/ios/50/000000/star--v1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  cursor: pointer;
+
+  ${({ favorited }) =>
+    favorited &&
+    `
+    background-color: #d4af37;
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/star--v1.png");
+  `}
+`;
+
+export const FavoriteButton = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center
 `;
